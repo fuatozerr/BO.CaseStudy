@@ -1,6 +1,6 @@
 ﻿namespace BirlesikOdeme.Core.Entities
 {
-    public class Vatandas
+    public class Citizen
     {
         public string Ad { get; set; }
 

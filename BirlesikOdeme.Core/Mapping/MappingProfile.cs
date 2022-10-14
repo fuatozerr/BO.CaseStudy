@@ -13,7 +13,7 @@ namespace BirlesikOdeme.Core.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Vatandas, VatandasRequestModel>()
+            CreateMap<Citizen, CitizenRequestModel>()
                 .ReverseMap();
         }
         

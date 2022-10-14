@@ -21,10 +21,10 @@ namespace BirlesikOdeme.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CheckMernis([FromBody] VatandasRequestModel request)
+        public async Task<IActionResult> CheckMernis([FromBody] CitizenRequestModel request)
         {
-            var vatandas = mapper.Map<Vatandas>(request);
-            var result = mernisService.CheckTCNumber(vatandas);
+            var citizen = mapper.Map<Citizen>(request);
+            var result = mernisService.CheckTCNumber(citizen);
             return Ok(result);
 
         }

@@ -1,6 +1,6 @@
 ﻿namespace BirlesikOdeme.API.Dtos
 {
-    public class VatandasRequestModel
+    public class CitizenRequestModel
     {
         public string Ad { get; set; }
 

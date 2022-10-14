@@ -14,7 +14,7 @@ namespace BirlesikOdeme.Core.Services.Classes
     public class MernisService : IMernisService
     {
         
-        public string CheckTCNumber(Vatandas input)
+        public string CheckTCNumber(Citizen input)
         {
 
             try

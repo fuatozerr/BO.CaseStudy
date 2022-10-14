@@ -1,4 +1,5 @@
 using BirlesikOdeme.Core.Extensions;
+using BirlesikOdeme.Core.Filters;
 using FluentValidation.AspNetCore;
 using System.Reflection;
 
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddFluentValidation( 
     x=>x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
+
+
+builder.Services.AddMvc(x => x.Filters.Add<ErrorFilter>());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
