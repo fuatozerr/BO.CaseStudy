@@ -14,7 +14,9 @@ namespace BirlesikOdeme.Core.Extensions
     {
         public static IServiceCollection AddInfrasturctureRegistration(this IServiceCollection services)
         {
-            services.AddSingleton<IMernisService, MernisService>();           
+            services.AddTransient<IMernisService, MernisService>();
+            services.AddTransient<IRestService, RestService>();
+
             return services;
         }
 

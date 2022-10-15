@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BirlesikOdeme.API.Dtos;
 using BirlesikOdeme.Core.Entities;
+using BirlesikOdeme.Core.Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ namespace BirlesikOdeme.Core.Mapping
         {
             CreateMap<Citizen, CitizenRequestModel>()
                 .ReverseMap();
+
+            CreateMap<SalesModel, SalesRequestModel>()
+               .ReverseMap();
         }
         
     }
