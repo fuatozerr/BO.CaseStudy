@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BirlesikOdeme.API", "Birles
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BirlesikOdeme.Core", "BirlesikOdeme.Core\BirlesikOdeme.Core.csproj", "{F2CBC869-7052-4BB4-B429-A967ED92EA5D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{119E297B-3224-4C81-A47B-7CA1F38F88B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirlesikOdeme.UnitTest", "BirlesikOdeme.UnitTest\BirlesikOdeme.UnitTest.csproj", "{B300CD1D-8F4B-4BD0-A3F9-7F16CD05C725}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,10 @@ Global
 		{F2CBC869-7052-4BB4-B429-A967ED92EA5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2CBC869-7052-4BB4-B429-A967ED92EA5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2CBC869-7052-4BB4-B429-A967ED92EA5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B300CD1D-8F4B-4BD0-A3F9-7F16CD05C725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B300CD1D-8F4B-4BD0-A3F9-7F16CD05C725}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B300CD1D-8F4B-4BD0-A3F9-7F16CD05C725}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B300CD1D-8F4B-4BD0-A3F9-7F16CD05C725}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A85BCAFB-0314-4302-809C-EFC80812DCDC} = {231FEBF7-975C-44B5-BC1F-E599E5AB0D6C}
 		{F2CBC869-7052-4BB4-B429-A967ED92EA5D} = {95DB35BF-7F03-4CD7-972D-1117C1FE5390}
+		{B300CD1D-8F4B-4BD0-A3F9-7F16CD05C725} = {119E297B-3224-4C81-A47B-7CA1F38F88B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B66163B0-EF40-48CB-AD1C-9CC37F93E4A1}

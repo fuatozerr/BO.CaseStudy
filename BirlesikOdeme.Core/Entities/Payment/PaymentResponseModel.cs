@@ -16,8 +16,11 @@ namespace BirlesikOdeme.Core.Entities.Payment
 
     public class PaymentResponseResultModel
     {
-        public int ResponseCode { get; set; }
+        public string url { get; set; }
+        public string ResponseCode { get; set; }
         public string responseMessage { get; set; }
+        public string bankResponseMessage { get; set; }
+        public string bankOrderNo { get; set; }
         public string orderId { get; set; }
         public string txnType { get; set; }
         public string txnStatus { get; set; }
@@ -26,6 +29,7 @@ namespace BirlesikOdeme.Core.Entities.Payment
         public string authCode { get; set; }
         public string hostReference { get; set; }
         public string totalAmount { get; set; }
+        public bool hideResponseTarget { get; set; }
 
-    }
+    }    
 }

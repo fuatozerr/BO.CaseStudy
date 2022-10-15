@@ -16,7 +16,6 @@ namespace BirlesikOdeme.Core.Extensions
         {
             services.AddTransient<IMernisService, MernisService>();
             services.AddTransient<IRestService, RestService>();
-
             return services;
         }
 

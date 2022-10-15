@@ -2,8 +2,11 @@ using BirlesikOdeme.Core.Extensions;
 using BirlesikOdeme.Core.Filters;
 using FluentValidation.AspNetCore;
 using System.Reflection;
+using Serilog;
+using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
+var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings();//.GetCurrentClassLogger();
 
 // Add services to the container.
 
@@ -17,6 +20,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrasturctureRegistration(); //INJECTION
 builder.Services.AddApplicationRegistration();
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

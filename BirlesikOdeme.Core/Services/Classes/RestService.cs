@@ -16,32 +16,32 @@ namespace BirlesikOdeme.Core.Services.Classes
 {
     public class RestService : IRestService
     {
-        private readonly string SecurityUrl;
-        private readonly string PaymentUrl;
+        private readonly string securityUrl;
+        private readonly string paymentUrl;
         private readonly IConfiguration _configuration;
 
 
         public RestService(IConfiguration configuration)
         {
             _configuration = configuration;
-            SecurityUrl = _configuration["BirlesikOdemeUrl:SecurityUrl"];
-            PaymentUrl =  _configuration["BirlesikOdemeUrl:PaymentUrl"];
+            securityUrl = _configuration["BirlesikOdemeUrl:SecurityUrl"];
+            paymentUrl = _configuration["BirlesikOdemeUrl:PaymentUrl"];
         }
 
-        public async Task<SecurityResponseModel> Login()
+        private async Task<SecurityResponseModel> Login()
         {
             try
             {
-                var client = new RestClient(SecurityUrl);
-                var request = new RestRequest("", Method.Post);
+                var client = new RestClient(securityUrl);
+                var request = new RestRequest(string.Empty, Method.Post);
                 request.AddHeader("Content-Type", "application/json");
                 var body = JsonSerializer.Serialize(new SecurityRequestModel());
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
                 var response = await client.PostAsync<SecurityResponseModel>(request);
                 return response;
             }
             catch (Exception)
             {
-
                 throw new BirlesikOdemeException("Birleşik Ödeme servisiyle bağlantı yapılamadı.");
             }
         }
@@ -49,41 +49,46 @@ namespace BirlesikOdeme.Core.Services.Classes
         public async Task<PaymentResponseModel> Sales(SalesModel salesModel)
         {
             var customer = await Login();
-            string hash = PaymentHash(new PaymentHash());
+            if (customer.fail)
+            {
+                throw new BirlesikOdemeException("Birleşik Ödeme servisiyle bağlantı yapılamadı.");
+            }
+            string paymentHash = PaymentHash(new PaymentHash());
             try
             {
-                var client = new RestClient(SecurityUrl);
+                var client = new RestClient(paymentUrl);
                 var request = new RestRequest("", Method.Post);
                 request.AddHeader("Content-Type", "application/json");
-                request.AddHeader("Authorization ", "bearer " +customer.result.token);
-                var paymentRequst = new PaymentRequestModel();
-                paymentRequst.cardNumber = salesModel.KartNumarasi;
-                paymentRequst.expiryDateMonth = salesModel.KartSonKullanmaAyi;
-                paymentRequst.expiryDateYear = salesModel.KartSonKullanmaYili;
-                paymentRequst.hash = hash;
-                var body = JsonSerializer.Serialize(paymentRequst);
+                request.AddHeader("Authorization", "Bearer " + customer.result.token);
+                var paymentRequest = new PaymentRequestModel 
+                {
+                    cardNumber = salesModel.KartNumarasi,
+                    expiryDateMonth = salesModel.KartSonKullanmaAyi,
+                    expiryDateYear = salesModel.KartSonKullanmaYili,
+                    hash = paymentHash 
+                };               
+                var body = JsonSerializer.Serialize(paymentRequest);
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
                 var response = await client.PostAsync<PaymentResponseModel>(request);
                 return response;
 
             }
-            catch (Exception)
+            catch (Exception ex )
             {
-
-                throw new BirlesikOdemeException("Birleşik Ödeme servisiyle bağlantı yapılamadı.");
+                throw new BirlesikOdemeException("Birleşik Ödeme servisiyle bağlantı yapılamadı." +ex);
             }
-
 
         }
 
         private static string PaymentHash(PaymentHash request)
-         {
-             var hashString = $"{request.HashPassword}{request.UserCode}{request.Rnd}{request.txnType}{request.TotalAmount}{request.CustomerId}{request.OrderId}{request.OkUrl}{request.FailUrl}";
-             var s512 = SHA512.Create();
-             var byteConverter = new UnicodeEncoding();
-             var bytes = s512.ComputeHash(byteConverter.GetBytes(hashString));
-             var hash = BitConverter.ToString(bytes).Replace("-", "");
-             return hash;
-         }
+        {
+            var hashString = $"{request.HashPassword}{request.UserCode}{request.Rnd}{request.txnType}{request.TotalAmount}{request.CustomerId}{request.OrderId}{request.OkUrl}{request.FailUrl}"; //okurl failurl nedir bilmiyorum. dokumanlarda göremedim
+            var s512 = SHA512.Create();
+            var byteConverter = new UnicodeEncoding();
+            var bytes = s512.ComputeHash(byteConverter.GetBytes(hashString));
+            var hash = BitConverter.ToString(bytes).Replace("-", "");
+            return hash;
+        }
 
 
     }

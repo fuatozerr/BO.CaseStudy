@@ -15,19 +15,22 @@ namespace BirlesikOdeme.API.Controllers
         private readonly IMernisService mernisService;
         private readonly IMapper mapper;
         private readonly IRestService restService;
+        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(IMernisService mernisService, IMapper mapper, IRestService restService)
+        public HomeController(IMernisService mernisService, IMapper mapper, IRestService restService, ILogger<HomeController> logger)
         {
             this.mernisService = mernisService;
             this.mapper = mapper;
             this.restService = restService;
+            _logger = logger;   
         }
 
         [HttpPost]
         public async Task<IActionResult> CheckMernis([FromBody] CitizenRequestModel request)
         {
+            _logger.Log(LogLevel.Information, "Request geldi."); //nlog.config dosyasına yazıldığı yer belirtilmiştir.
             var citizenModel = mapper.Map<Citizen>(request);
-            var result = mernisService.CheckTCNumber(citizenModel);
+            var result = await mernisService.CheckTCNumber(citizenModel);
             return Ok(result);
 
         }

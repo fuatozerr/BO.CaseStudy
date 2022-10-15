@@ -9,6 +9,6 @@ namespace BirlesikOdeme.Core.Services.Interfaces
 {
     public interface IMernisService
     {
-        string CheckTCNumber(Citizen input);
+        Task<string> CheckTCNumber(Citizen input);
     }
 }
