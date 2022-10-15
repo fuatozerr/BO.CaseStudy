@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using BirlesikOdeme.API.Dtos;
-using BirlesikOdeme.Core.Entities;
 using BirlesikOdeme.Core.Entities.Dtos;
+using BirlesikOdeme.Core.Entities.Mernis;
+using BirlesikOdeme.Core.Entities.Payment;
 using System;
 using System.Collections.Generic;
 using System.Linq;

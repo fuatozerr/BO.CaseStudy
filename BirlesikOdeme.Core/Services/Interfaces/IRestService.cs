@@ -1,10 +1,11 @@
-﻿using BirlesikOdeme.Core.Entities;
+﻿using BirlesikOdeme.Core.Entities.Payment;
+using BirlesikOdeme.Core.Entities.Security;
 
 namespace BirlesikOdeme.Core.Services.Interfaces
 {
     public interface IRestService
     {
         Task<SecurityResponseModel> Login();
-        Task<SalesModel> Sales(SalesModel salesModel);
+        Task<PaymentResponseModel> Sales(SalesModel salesModel);
     }
 }

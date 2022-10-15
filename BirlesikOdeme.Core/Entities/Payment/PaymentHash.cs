@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BirlesikOdeme.Core.Entities.BaseModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BirlesikOdeme.Core.Entities
+namespace BirlesikOdeme.Core.Entities.Payment
 {
     /// <summary>
     /// dokümanlara ve maildeki verileri direkt yazdım.

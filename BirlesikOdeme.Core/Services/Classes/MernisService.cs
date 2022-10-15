@@ -1,4 +1,4 @@
-﻿using BirlesikOdeme.Core.Entities;
+﻿using BirlesikOdeme.Core.Entities.Mernis;
 using BirlesikOdeme.Core.Exceptions;
 using BirlesikOdeme.Core.Helpers;
 using BirlesikOdeme.Core.Services.Interfaces;

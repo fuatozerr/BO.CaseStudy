@@ -1,4 +1,5 @@
-﻿using BirlesikOdeme.Core.Entities;
+﻿using BirlesikOdeme.Core.Entities.Payment;
+using BirlesikOdeme.Core.Entities.Security;
 using BirlesikOdeme.Core.Exceptions;
 using BirlesikOdeme.Core.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -45,7 +46,7 @@ namespace BirlesikOdeme.Core.Services.Classes
             }
         }
 
-        public async Task<SalesModel> Sales(SalesModel salesModel)
+        public async Task<PaymentResponseModel> Sales(SalesModel salesModel)
         {
             var customer = await Login();
             string hash = PaymentHash(new PaymentHash());
@@ -55,7 +56,15 @@ namespace BirlesikOdeme.Core.Services.Classes
                 var request = new RestRequest("", Method.Post);
                 request.AddHeader("Content-Type", "application/json");
                 request.AddHeader("Authorization ", "bearer " +customer.result.token);
-                return null;
+
+                var paymentRequst = new PaymentRequestModel();
+                paymentRequst.cardNumber = salesModel.KartNumarasi;
+                paymentRequst.expiryDateMonth = salesModel.KartSonKullanmaAyi;
+                paymentRequst.expiryDateYear = salesModel.KartSonKullanmaYili;
+                paymentRequst.hash = PaymentHash(new PaymentHash());
+                var body = JsonSerializer.Serialize(paymentRequst);
+                var response = await client.PostAsync<PaymentResponseModel>(request);
+                return response;
 
             }
             catch (Exception)

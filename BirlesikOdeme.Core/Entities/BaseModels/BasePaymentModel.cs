@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BirlesikOdeme.Core.Entities
+namespace BirlesikOdeme.Core.Entities.BaseModels
 {
     /// <summary>
     /// payment hash model ve request modeldeki ortak alanlar

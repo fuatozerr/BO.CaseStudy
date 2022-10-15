@@ -1,4 +1,4 @@
-﻿namespace BirlesikOdeme.Core.Entities
+﻿namespace BirlesikOdeme.Core.Entities.Mernis
 {
     public class Citizen
     {

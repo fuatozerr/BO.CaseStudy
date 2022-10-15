@@ -1,4 +1,4 @@
-﻿using BirlesikOdeme.Core.Entities;
+﻿using BirlesikOdeme.Core.Entities.Mernis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
