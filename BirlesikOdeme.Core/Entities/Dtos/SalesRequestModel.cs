@@ -9,7 +9,7 @@ namespace BirlesikOdeme.Core.Entities.Dtos
     public class SalesRequestModel
     {
         public string BankaAdi { get; set; }
-        public int KartNumarasi { get; set; }
+        public string KartNumarasi { get; set; }
         public string KartSonKullanmaAyi { get; set; }
         public string KartSonKullanmaYili { get; set; }
     }

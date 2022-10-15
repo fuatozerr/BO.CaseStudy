@@ -32,19 +32,11 @@ namespace BirlesikOdeme.API.Controllers
 
         }
 
-        [HttpGet]
-        public IActionResult Login()
-        {
-            var x = restService.Login();
-            return Ok(x);
-
-        }
-
         [HttpPost]
         public async Task<IActionResult> Sales([FromBody] SalesRequestModel request)
         {
             var salesModel = mapper.Map<SalesModel>(request);
-            var result = restService.Sales(salesModel);
+            var result =await restService.Sales(salesModel);
             return Ok(result);
 
         }

@@ -56,12 +56,11 @@ namespace BirlesikOdeme.Core.Services.Classes
                 var request = new RestRequest("", Method.Post);
                 request.AddHeader("Content-Type", "application/json");
                 request.AddHeader("Authorization ", "bearer " +customer.result.token);
-
                 var paymentRequst = new PaymentRequestModel();
                 paymentRequst.cardNumber = salesModel.KartNumarasi;
                 paymentRequst.expiryDateMonth = salesModel.KartSonKullanmaAyi;
                 paymentRequst.expiryDateYear = salesModel.KartSonKullanmaYili;
-                paymentRequst.hash = PaymentHash(new PaymentHash());
+                paymentRequst.hash = hash;
                 var body = JsonSerializer.Serialize(paymentRequst);
                 var response = await client.PostAsync<PaymentResponseModel>(request);
                 return response;
